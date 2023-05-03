@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.navbar {
+  background-color: #ffd700 !important;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}

@@ -1,0 +1,43 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.navbar {
+  background-color: #ffd700 !important;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.now {
+  font-weight: 600;
+  text-decoration: underline;
+  color: black;
+}
+
+.card-tiket {
+  box-shadow: 0 0 2px grey;
+  border-radius: 10px;
+}
+
+.status {
+  width: 15%;
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: 550;
+}
+
+.note {
+  font-style: italic;
+  color: grey;
+}
+
+@media screen and (max-width: 550px) {
+  .status {
+    width: 50%;
+  }
+
+  .note {
+    font-size: 10px !important;
+  }
+}

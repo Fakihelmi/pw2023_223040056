@@ -1,0 +1,44 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.navbar {
+  background-color: #ffd700 !important;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.fa-arrow-left {
+  font-size: 25px !important;
+}
+
+.card-login {
+  width: 30% !important;
+  display: flex;
+  margin: auto;
+  padding: 40px 40px;
+  align-items: center;
+  margin-top: 2% !important ;
+  border-radius: 10px;
+  box-shadow: 0 0 2px rgb(194, 194, 194);
+}
+
+form {
+  margin: auto;
+  width: 100%;
+  background-color: white;
+}
+
+.norek {
+  font-size: 28px;
+  font-weight: 550;
+}
+
+.text-bold {
+  font-weight: 550;
+}
+
+@media screen and (max-width: 550px) {
+  .card-login {
+    width: 90% !important;
+  }
+}

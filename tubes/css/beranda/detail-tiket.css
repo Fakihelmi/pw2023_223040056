@@ -1,0 +1,52 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.navbar {
+  background-color: #ffd700 !important;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.fa-arrow-left {
+  font-size: 25px !important;
+}
+
+.kode-booking {
+  width: 30%;
+  font-weight: 500;
+}
+
+.status {
+  width: 20%;
+  text-align: center;
+}
+
+.card-detail {
+  background-color: white;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 2px grey;
+}
+
+.text-bold {
+  font-weight: 500;
+  color: rgb(109, 109, 109);
+}
+
+.m {
+  margin-bottom: 20px !important;
+}
+
+@media screen and (max-width: 550px) {
+  .status {
+    width: 50%;
+  }
+
+  .kode-booking {
+    width: 90%;
+    margin: auto;
+    font-size: 14px;
+    text-align: center !important;
+  }
+}

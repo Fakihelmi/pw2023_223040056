@@ -1,0 +1,32 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.navbar {
+  background-color: #ffd700 !important;
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+
+.now {
+  font-weight: 600;
+  text-decoration: underline;
+  color: black;
+}
+
+.note {
+  font-style: italic;
+}
+
+@media screen and (max-width: 550px) {
+  .note {
+    font-size: 10px;
+  }
+
+  form {
+    padding: 0 10px;
+  }
+
+  .book button {
+    width: 100% !important;
+  }
+}

@@ -1,0 +1,20 @@
+body {
+  background-color: rgb(244, 244, 244);
+}
+
+.card-login {
+  width: 30% !important;
+  display: flex;
+  margin: auto;
+  padding: 50px 50px;
+  align-items: center;
+  margin-top: 6% !important ;
+  border-radius: 10px;
+  box-shadow: 0 0 2px rgb(194, 194, 194);
+}
+
+form {
+  margin: auto;
+  width: 100%;
+  background-color: white;
+}
