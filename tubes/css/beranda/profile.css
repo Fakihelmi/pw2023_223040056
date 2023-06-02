@@ -6,3 +6,9 @@ body {
   background-color: #ffd700 !important;
   border-bottom: 1px solid rgb(175, 175, 175);
 }
+
+@media screen and (max-width: 700px) {
+  .card-profile {
+    width: 100% !important;
+  }
+}
