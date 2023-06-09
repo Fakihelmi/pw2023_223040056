@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || $_SESSION["role"] !== "admin") {
     header("location: login-admind.php");
     exit;
 }
@@ -10,11 +10,18 @@ require '../php/functions.php';
 
 $conn = koneksi();
 
-$Tampil = query("SELECT * FROM user");
+if (isset($_GET['search'])) {
+    $keyword = $_GET['keyword'];
+
+    $query = "SELECT * FROM user WHERE nama_lengkap LIKE '%$keyword%' OR username LIKE '%$keyword%'  OR nomor_hp LIKE '%$keyword%'";
+    $Tampil = query($query);
+} else {
+    $Tampil = query("SELECT * FROM user");
+}
 
 $i = 1;
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,28 +60,44 @@ $i = 1;
 
     <div class="container mt-5">
         <h2 id="daftar-user">Daftar User</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Lengkap</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Nomor HP</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($Tampil as $t) : ?>
+
+        <div class="row mb-5 mt-5">
+            <div class="col-md-6">
+                <form action="" method="get">
+                    <div class="input-group">
+                        <input type="search" class="form-control rounded" name="keyword" id="keyword" form-control" placeholder="Search users fahmi trans" autofocus autocomplete="off">
+                        <button class="btn btn-primary" name="search" id="search-button" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="search-container">
+            <table class="table">
+                <thead>
                     <tr>
-                        <th scope="row"><?= $i++; ?></th>
-                        <td><?= $t['nama_lengkap']; ?></td>
-                        <td><?= $t['username']; ?></td>
-                        <td><?= $t['nomor_hp']; ?></td>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama Lengkap</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Nomor HP</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($Tampil as $t) : ?>
+                        <tr>
+                            <th scope="row"><?= $i++; ?></th>
+                            <td><?= $t['nama_lengkap']; ?></td>
+                            <td><?= $t['username']; ?></td>
+                            <td><?= $t['nomor_hp']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
+    <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 

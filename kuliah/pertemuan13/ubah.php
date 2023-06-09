@@ -1,6 +1,6 @@
 <?php
 // koneksi ke dbms
-$conn = mysqli_connect("localhost:3306", "root", "", "php_dasar1");
+$conn = mysqli_connect("localhost:3306", "root", "", "pw2023_223040056");
 require 'functions.php';
 
 // ambil data di url

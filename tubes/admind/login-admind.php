@@ -9,21 +9,29 @@ if (isset($_POST["login"])) {
 
     $conn = koneksi();
 
-    if ($username === "admind" && $password === "admind") {
-        // set session
-        $_SESSION["login"] = true;
-        $_SESSION["user_id"] = "admind";
+    // Cek apakah username dan password valid untuk peran "admind"
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
 
-        // set cookie
-        setcookie("username", $username, time() + 3600);
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        if (password_verify($password, $row["password"]) && $row["role"] === "admin") {
+            // set session
+            $_SESSION["login"] = true;
+            $_SESSION["user_id"] = $row["user_id"];
+            $_SESSION["role"] = $row["role"];
 
-        header("location: dashboard.php");
-        exit;
+            // set cookie
+            setcookie("username", $username, time() + 3600);
+
+            header("location: dashboard.php");
+            exit;
+        }
     }
 
     $error = true;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

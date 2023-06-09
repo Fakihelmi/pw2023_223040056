@@ -52,7 +52,7 @@ function registrasi($data)
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     // tambahkan user baru ke database
-    mysqli_query($conn, "INSERT INTO user VALUES(null,'$nama_lengkap','$nomor_hp','$username', '$password')");
+    mysqli_query($conn, "INSERT INTO user VALUES(null,'$nama_lengkap','$nomor_hp','$username', '$password', 'user')");
 
     return mysqli_affected_rows($conn);
 }

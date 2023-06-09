@@ -1,11 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || $_SESSION["role"] !== "admin") {
     header("location: login-admind.php");
     exit;
 }
-
 require '../php/functions.php';
 
 $conn = koneksi();

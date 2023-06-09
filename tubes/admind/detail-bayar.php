@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || $_SESSION["role"] !== "admin") {
     header("location: login-admind.php");
     exit;
 }
@@ -33,14 +33,23 @@ $pembayaran = $pembayaran[0]; // Ambil data pembayaran pada indeks 0
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pembayaran</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+    <style>
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning no-print">
         <div class="container">
             <a class="navbar-brand" href="#">Fahmi trans</a>
         </div>
     </nav>
+
+    <button class="btn btn-danger mt-4 ms-4 mb-4 no-print" onclick="window.print()">Download</button>
 
     <div class="container mt-5">
         <div class="card border-3 mb-4 border-warning">

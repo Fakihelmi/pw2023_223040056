@@ -13,12 +13,36 @@ $conn = koneksi();
 // Mendapatkan user_id dari session
 $user_id = $_SESSION["user_id"];
 
-//ambil data user berdasarkan user_id
+// Memproses form jika tombol "Delete" diklik
+if (isset($_POST['hapus'])) {
+  // Hapus terlebih dahulu data pembayaran yang terkait dengan tiket
+  $queryPembayaran = "DELETE FROM pembayaran WHERE ticket_id IN (SELECT id FROM ticket WHERE user_id = $user_id)";
+  mysqli_query($conn, $queryPembayaran);
+
+  // Hapus terlebih dahulu data tiket yang terkait dengan pengguna
+  $queryTicket = "DELETE FROM ticket WHERE user_id = $user_id";
+  mysqli_query($conn, $queryTicket);
+
+  // Hapus akun dari database
+  $queryUser = "DELETE FROM user WHERE user_id = $user_id";
+  $hapus = mysqli_query($conn, $queryUser);
+
+  // Logout user dan arahkan ke halaman login
+  if ($hapus) {
+    session_destroy();
+    header("location: login.php");
+    exit;
+  } else {
+    echo "Gagal menghapus akun";
+  }
+}
+
+// Ambil data user berdasarkan user_id
 $query = "SELECT * FROM user WHERE user_id = $user_id";
 $result = mysqli_query($conn, $query);
 $user = mysqli_fetch_assoc($result);
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -89,7 +113,12 @@ $user = mysqli_fetch_assoc($result);
         <label class="fw-bold mb-1" for="nomor_hp">Nomer handphone</label>
         <input class="border-2 border-warning rounded p-2" type="text" name="nomor_hp" value="<?= $user['nomor_hp'] ?>">
       </div>
-      <a class="btn btn-danger mt-2" href="../php/logout.php">Logout</a>
+      <div class="button-class d-flex mt-2">
+        <a class="btn btn-danger me-2" href="../php/logout.php">Logout</a>
+        <form method="POST" onsubmit="return confirm('Apakah Anda yakin menghapus akun?')">
+          <button class="btn btn-danger" name="hapus">Delete</button>
+        </form>
+      </div>
     </div>
   </div>
 
